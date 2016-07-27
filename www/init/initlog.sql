@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS account_log (
 	`log_type`  int(11) NOT NULL ,
 	`log_account`  int(11) NOT NULL ,
 	`log_time` int(11) NOT NULL,
-	PRIMARY KEY (`log_index`);
+	PRIMARY KEY (`log_index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS market_log (
 	`log_market_id` int(11) NOT NULL,
 	`log_account`  int(11) NOT NULL,
 	`log_time` int(11) NOT NULL,
-	PRIMARY KEY (`log_index`);
+	PRIMARY KEY (`log_index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS items_log (
 	`log_item_type`  int(11) NOT NULL,
 	`log_account`  int(11) NOT NULL,
 	`log_time` int(11) NOT NULL,
-	PRIMARY KEY (`log_index`);
+	PRIMARY KEY (`log_index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS item_info_log (
 	`log_item_id` int(11) NOT NULL,
 	`log_account` int(11) NOT NULL,
 	`log_time` int(11) NOT NULL,
-	PRIMARY KEY (`log_index`);
+	PRIMARY KEY (`log_index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS item_detail_log (
 	`log_item_id`  int(11) NOT NULL ,
 	`log_account` int(11) NOT NULL,
 	`log_time` int(11) NOT NULL,
-	PRIMARY KEY (`log_index`);
+	PRIMARY KEY (`log_index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -57,7 +57,7 @@ BEGIN
 	/* =================update BEGIN==================== */
 	/* =================update END==================== */
 	SET @result = 1;
-END;
+END
 
 CALL server_update();
 DROP PROCEDURE IF EXISTS server_update;

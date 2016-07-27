@@ -2,8 +2,9 @@ CREATE TABLE IF NOT EXISTS account (
 	`account_id`  bigint(11) NOT NULL AUTO_INCREMENT ,
 	`account_name`  varchar(50) NOT NULL ,
 	`account_pwd`  varchar(50) NOT NULL ,
+	`account_prv`  int(4) NOT NULL,
 	`reg_time` int(11) NOT NULL,
-	PRIMARY KEY (`account_id`);
+	PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30000 DEFAULT CHARSET=utf8;
 //
 
@@ -13,7 +14,7 @@ CREATE TABLE IF NOT EXISTS market_code (
 	`game_name` varchar(50) NOT NULL,
 	`create_account`  int(11) NOT NULL,
 	`create_time` int(11) NOT NULL,
-	PRIMARY KEY (`market_id`);
+	PRIMARY KEY (`market_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 //
 
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS items_type (
 	`parent_type_id`  int(11),
 	`create_account` int(11) NOT NULL,
 	`create_time` int(11) NOT NULL,
-	PRIMARY KEY (`items_type_id`);
+	PRIMARY KEY (`items_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2000 DEFAULT CHARSET=utf8;
 //
 
@@ -34,7 +35,7 @@ CREATE TABLE IF NOT EXISTS item_info (
 	`items_type_id`  int(11) NOT NULL,
 	`create_account` int(11) NOT NULL,
 	`create_time` int(11) NOT NULL,
-	PRIMARY KEY (`item_id`);
+	PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3000 DEFAULT CHARSET=utf8;
 //
 
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS item_detail (
 	`max_value` int(11) NOT NULL,
 	`insert_account` int(11) NOT NULL,
 	`insert_time` int(11) NOT NULL,
-	PRIMARY KEY (`insert_id`);
+	PRIMARY KEY (`insert_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 //
 
@@ -59,9 +60,13 @@ BEGIN
 	select database() into uDbName;
 	SET @result = 0;
 	/* =================update BEGIN==================== */
+	IF NOT EXISTS (select * from information_schema.columns where table_schema = uDbName and table_name = 'account' and column_name = 'account_prv') THEN
+		ALTER TABLE `account` ADD COLUMN `account_prv` int(4) NOT NULL AFTER `account_pwd`;
+	END IF;
 	/* =================update END==================== */
 	SET @result = 1;
 END;
+//
 
 CALL server_update();
 DROP PROCEDURE IF EXISTS server_update;
