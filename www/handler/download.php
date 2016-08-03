@@ -1,7 +1,10 @@
 <?php
-	function downfile(){
-		$filename = $_SERVER['DOCUMENT_ROOT'].'/files/downloadfile.dld';
-
+	function downfile($name){
+		$filename = $_SERVER['DOCUMENT_ROOT'].'/files/'.$name;
+		#check file
+		if(file_exists($filename) === false){
+			echo "file:".$name."not on the server!";
+		}
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename='.basename($filename));
@@ -12,5 +15,4 @@
 		header('Content-Length: ' . filesize($filename));
 		readfile($filename);
 	}
-	downfile();
 ?>
