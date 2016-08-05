@@ -1,5 +1,6 @@
 <?php
-	function downfile($name){
+	function downfile(){
+		$name = 'downloadfile.dld';
 		$filename = $_SERVER['DOCUMENT_ROOT'].'/files/'.$name;
 		#check file
 		if(file_exists($filename) === false){
@@ -15,4 +16,5 @@
 		header('Content-Length: ' . filesize($filename));
 		readfile($filename);
 	}
+	downfile();
 ?>
